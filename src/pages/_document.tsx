@@ -16,9 +16,8 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta charSet={'utf-8'} />
-          <title>CStation</title>
           <meta name="description" content="cloud station" />
-          <link rel="icon" href="/public/favicon.ico" />
+          <link rel="icon" href="/images/icons/favicon.svg" />
         </Head>
         <body className={'h-full'}>
           <Main />
