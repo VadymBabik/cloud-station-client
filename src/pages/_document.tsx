@@ -19,7 +19,7 @@ class MyDocument extends Document {
           <meta name="description" content="cloud station" />
           <link rel="icon" href="/images/icons/favicon.svg" />
         </Head>
-        <body className={'h-full'}>
+        <body className={'h-full container mx-auto bg-indigo-50'}>
           <Main />
           <NextScript />
         </body>
