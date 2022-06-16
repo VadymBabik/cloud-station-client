@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout/Layout';
 import Image from 'next/image';
+
+import { Layout } from '../components/Layout';
 
 const Home: NextPage = () => {
   return (
@@ -8,8 +9,9 @@ const Home: NextPage = () => {
       <div className="flex justify-center items-center min-h-full">
         <Image
           src={'/images/hero-image.png'}
-          width={800}
-          height={800}
+          width="800"
+          height="800"
+          objectFit="fill"
           alt={'hero-image'}
         />
       </div>
