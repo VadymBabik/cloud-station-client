@@ -15,6 +15,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 interface ReactHookFormOptions<FormDataType> {
   defaultValues: UnpackNestedValue<DeepPartial<FormDataType>>;
+  isModalForm?: boolean;
   serverValidatedFields?: Path<FormDataType>[];
   schema?: AnyObjectSchema;
 }
@@ -28,6 +29,7 @@ interface SubmitReactHookFormOptions<FormDataType> {
 
 function useReactHookForm<FormDataType extends FieldValues>({
   defaultValues,
+  isModalForm = false,
   schema
 }: ReactHookFormOptions<FormDataType>) {
   const {
@@ -38,8 +40,7 @@ function useReactHookForm<FormDataType extends FieldValues>({
     reset,
     setError,
     setValue,
-    watch,
-    getValues
+    watch
   } = useForm<FormDataType>({
     defaultValues,
     resolver: schema ? yupResolver(schema) : undefined
@@ -51,8 +52,8 @@ function useReactHookForm<FormDataType extends FieldValues>({
       onClientValidationError,
       onServerError,
       dirtyFieldsOnly = true
-    }: SubmitReactHookFormOptions<FormDataType>) =>
-      handleSubmit(
+    }: SubmitReactHookFormOptions<FormDataType>) => {
+      return handleSubmit(
         async (data) => {
           try {
             if (dirtyFieldsOnly) {
@@ -68,9 +69,14 @@ function useReactHookForm<FormDataType extends FieldValues>({
         },
         (errors) => {
           onClientValidationError?.(errors);
+
+          if (isModalForm) {
+            throw new Error('Client validation error');
+          }
         }
-      ),
-    [handleSubmit, dirtyFields]
+      );
+    },
+    [handleSubmit, dirtyFields, isModalForm]
   );
 
   return {
@@ -83,8 +89,7 @@ function useReactHookForm<FormDataType extends FieldValues>({
     resetForm: reset,
     setError,
     setValue,
-    watch,
-    getValues
+    watch
   };
 }
 
