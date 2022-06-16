@@ -1,6 +1,9 @@
 import { ServerIcon } from '@heroicons/react/outline';
+
+import { LoginModalButton } from '../ModalButton/LoginModalButton';
+
 import { NextLinkHelper } from '../../../../Helpers/lincs/NextLinkHelper';
-import { UserMenu } from './component/UserMenu';
+
 import { user } from '../../../../constans/mocData';
 
 const Header = () => {
@@ -14,8 +17,8 @@ const Header = () => {
           </h1>
         </div>
       </NextLinkHelper>
-
-      <UserMenu user={user} />
+      <LoginModalButton />
+      {/*<UserMenu user={user} />*/}
     </div>
   );
 };
