@@ -13,11 +13,12 @@ const useLoginForm = () => {
   const { errors, handleSubmitReactHookForm, register, resetForm } =
     useReactHookForm<LoginFormData>({
       defaultValues: defaultValuesLoginForm,
-      schema: loginFormValidationSchema
+      schema: loginFormValidationSchema,
+      isModalForm: true
     });
   return {
     loginUser: handleSubmitReactHookForm({
-      onSubmit: async (data: LoginFormData) => console.log(data)
+      onSubmit: async (data: LoginFormData) => console.log({ ...data })
     }),
     registerFields: {
       registerEmail: register(LoginFields.EMAIL),
