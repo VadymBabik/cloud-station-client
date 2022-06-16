@@ -10,6 +10,7 @@ interface SimpleButtonProps {
   children: ReactNode;
   onClick?: SubmitButtonHelperOnClick;
   type?: ButtonType;
+  form?: string;
 }
 
 const SimpleButton = ({
@@ -17,10 +18,14 @@ const SimpleButton = ({
   disabled,
   onClick,
   children,
-  type = ButtonType.BUTTON
+  type = ButtonType.BUTTON,
+  form
 }: SimpleButtonProps) => {
   const handleClick = useCallback<SubmitButtonHelperOnClick>(
-    (e) => onClick?.(e),
+    (e) => {
+      e.preventDefault();
+      onClick?.(e);
+    },
     [onClick]
   );
   return (
@@ -32,6 +37,7 @@ const SimpleButton = ({
       disabled={disabled}
       onClick={handleClick}
       type={type}
+      form={form}
     >
       {children}
     </button>
