@@ -8,17 +8,17 @@ import { isLoading, ModalSize } from '../../../types';
 import { SimpleButton } from '../../Buttons/SimpleButton';
 
 interface ModalHelperProps {
-  title: string;
+  titleModal: string;
   children: ReactNode;
   hideModal: () => void;
   isOpen: boolean;
-  handleSubmit?: () => void;
-  isLoading: isLoading;
+  handleSubmit: () => void;
+  isLoading?: isLoading;
   modalSize?: ModalSize;
 }
 
 export default function SimpleModal({
-  title,
+  titleModal,
   children,
   hideModal,
   isOpen,
@@ -65,7 +65,7 @@ export default function SimpleModal({
               >
                 <div className="bg-white px-4 pt-1 pb-4 sm:p-4 sm:pb-4 flex flex-col">
                   <div className="flex items-center justify-center">
-                    <div className="text-xl grow text-center">{title}</div>
+                    <div className="text-xl grow text-center">{titleModal}</div>
                     <SimpleButton
                       onClick={hideModal}
                       className={
