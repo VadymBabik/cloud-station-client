@@ -7,22 +7,22 @@ import { useModal } from '../../ModalHelper/hooks/insex';
 import { SimpleModal } from '../../ModalHelper/SimpleModal';
 import { SimpleButton } from '../SimpleButton';
 
-interface SubmitModalButtonProps {
-  title: string;
-  text: string;
+interface SimpleModalButtonProps {
+  titleModal: string;
+  buttonText: string;
   children: ReactNode;
-  isLoading: isLoading;
+  isLoading?: isLoading;
   afterSubmit?: () => void | Promise<void>;
   onClose?: () => void;
   onOpen?: () => void;
-  onSubmit?: () => Promise<unknown>;
+  onSubmit: () => Promise<unknown>;
   onToggle?: (isOpen: boolean) => void;
   preventModalClose?: boolean;
   isModalOpen?: boolean;
   className?: ClassName;
 }
-const SubmitModalButton = ({
-  title,
+const SimpleModalButton = ({
+  titleModal,
   children,
   isLoading,
   onOpen,
@@ -32,8 +32,8 @@ const SubmitModalButton = ({
   afterSubmit,
   preventModalClose,
   className,
-  text
-}: SubmitModalButtonProps) => {
+  buttonText
+}: SimpleModalButtonProps) => {
   const { isOpen, showModal, hideModal, handleSubmit } = useModal({
     onOpen,
     onClose,
@@ -45,11 +45,11 @@ const SubmitModalButton = ({
   return (
     <Fragment>
       <SimpleButton className={className} onClick={showModal}>
-        {text}
+        {buttonText}
       </SimpleButton>
 
       <SimpleModal
-        title={title}
+        titleModal={titleModal}
         hideModal={hideModal}
         isOpen={isOpen}
         isLoading={isLoading}
@@ -61,4 +61,4 @@ const SubmitModalButton = ({
   );
 };
 
-export default SubmitModalButton;
+export default SimpleModalButton;
