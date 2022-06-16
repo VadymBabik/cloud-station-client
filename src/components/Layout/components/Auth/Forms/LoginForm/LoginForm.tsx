@@ -1,12 +1,12 @@
-import React from 'react';
-import { Form } from '../../../../../../Helpers/Form';
-import { InputField } from '../../../../../../Helpers/FormFilds/InputField';
 import {
   ErrorMessage,
   InputType,
   isLoading,
   RegisterFormFieldType
 } from '../../../../../../types';
+
+import { Form } from '../../../../../../Helpers/Form';
+import { InputField } from '../../../../../../Helpers/FormFilds/InputField';
 
 interface LoginFormProps {
   registerEmail: RegisterFormFieldType<HTMLInputElement>;
