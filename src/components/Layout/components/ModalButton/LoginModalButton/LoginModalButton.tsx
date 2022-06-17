@@ -5,13 +5,13 @@ import { LoginForm } from '../../Auth/Forms/LoginForm';
 import { SimpleModalButton } from '../../../../../Helpers/Buttons/SimpleModalButton';
 
 const LoginModalButton = () => {
-  const { loginUser, registerFields, validationErrors, resetForm } =
+  const { loginUser, registerFields, validationErrors, resetForm, isLoading } =
     useLoginForm();
   return (
     <SimpleModalButton
       titleModal={'Login'}
       buttonText={'Sing In'}
-      isLoading={false}
+      isLoading={isLoading}
       onSubmit={loginUser}
       onOpen={resetForm}
     >
