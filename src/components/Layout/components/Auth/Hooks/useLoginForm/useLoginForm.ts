@@ -1,5 +1,9 @@
 import { useReactHookForm } from '../../../../../../Hooks/useReactHookForm';
 
+import { CREATE_USER } from '../../queries/registerUser.query';
+
+import { useMutationHelper } from '../../../../../../Hooks/baseQuery/baseQuery';
+
 import { LoginFormData } from './useLoginForm.types';
 import { LoginFields } from '../../AuthTypes';
 import { loginFormValidationSchema } from './loginFormValidationSchema';
@@ -16,9 +20,18 @@ const useLoginForm = () => {
       schema: loginFormValidationSchema,
       isModalForm: true
     });
+
+  const { mutate, error, isLoading } = useMutationHelper({
+    query: CREATE_USER,
+    cacheKey: 'users'
+  });
+
+  if (error) {
+    throw new Error('error');
+  }
   return {
     loginUser: handleSubmitReactHookForm({
-      onSubmit: async (data: LoginFormData) => console.log({ ...data })
+      onSubmit: async (data: LoginFormData) => mutate(data)
     }),
     registerFields: {
       registerEmail: register(LoginFields.EMAIL),
@@ -28,7 +41,9 @@ const useLoginForm = () => {
       emailValidationError: errors?.email?.message,
       passwordValidationError: errors?.password?.message
     },
-    resetForm
+    resetForm,
+    error,
+    isLoading
   };
 };
 
