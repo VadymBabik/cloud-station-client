@@ -1,18 +1,21 @@
-import { Fragment } from 'react';
 import Head from 'next/head';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import type { AppProps } from 'next/app';
 
 import '../styles/globals.css';
 
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Fragment>
+    <QueryClientProvider client={queryClient}>
       <Head>
         <title>CStation</title>
       </Head>
       <Component {...pageProps} />
-    </Fragment>
+      <ReactQueryDevtools initialIsOpen={false} position="top-left" />
+    </QueryClientProvider>
   );
 }
 
