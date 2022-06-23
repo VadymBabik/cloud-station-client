@@ -1,13 +1,5 @@
-import { GraphQLClient } from 'graphql-request';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-
-export const graphQLClient = new GraphQLClient(
-  'http://localhost:3003/graphql',
-  {
-    // credentials: 'include'
-    // mode: 'cors'
-  }
-);
+import { graphQLClient } from './graphQLClient/graphQLClient';
 
 interface useQueryHelperProps {
   query: string;
@@ -15,7 +7,7 @@ interface useQueryHelperProps {
 }
 
 export const useQueryHelper = ({ query, cacheKey }: useQueryHelperProps) =>
-  useQuery(cacheKey, () => graphQLClient.request(query));
+  useQuery(cacheKey, () => graphQLClient.request(query), {});
 
 interface useMutationHelperProps<CreateQueryInput> {
   query: string;

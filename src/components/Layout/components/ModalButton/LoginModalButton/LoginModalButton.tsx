@@ -1,12 +1,19 @@
-import { useLoginForm } from '../../Auth/Hooks/useLoginForm';
+import { useLoginForm } from '../../../../../main/auth/Hooks/useLoginForm';
 
-import { LoginForm } from '../../Auth/Forms/LoginForm';
+import { AuthForm } from '../../../../../main/auth/Forms/AuthForm';
 
-import { SimpleModalButton } from '../../../../../Helpers/Buttons/SimpleModalButton';
+import { SimpleModalButton } from '../../../../Helpers/Buttons/SimpleModalButton';
+import { AlertMessage } from '../../../../Helpers/AlertMessage';
 
 const LoginModalButton = () => {
-  const { loginUser, registerFields, validationErrors, resetForm, isLoading } =
-    useLoginForm();
+  const {
+    loginUser,
+    registerFields,
+    validationErrors,
+    resetForm,
+    isLoading,
+    error
+  } = useLoginForm();
   return (
     <SimpleModalButton
       titleModal={'Login'}
@@ -15,12 +22,15 @@ const LoginModalButton = () => {
       onSubmit={loginUser}
       onOpen={resetForm}
     >
-      <LoginForm
+      <AuthForm
         registerEmail={registerFields.registerEmail}
         registerPassword={registerFields.registerPassword}
         emailValidationError={validationErrors.emailValidationError}
         passwordValidationError={validationErrors.passwordValidationError}
       />
+      <div className="pt-4">
+        <AlertMessage message={error} />
+      </div>
     </SimpleModalButton>
   );
 };

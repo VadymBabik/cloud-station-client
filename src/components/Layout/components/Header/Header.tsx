@@ -1,10 +1,8 @@
 import { ServerIcon } from '@heroicons/react/outline';
 
-import { LoginModalButton } from '../ModalButton/LoginModalButton';
+import { NextLinkHelper } from '../../../Helpers/lincs/NextLinkHelper';
 
-import { NextLinkHelper } from '../../../../Helpers/lincs/NextLinkHelper';
-
-import { user } from '../../../../constans/mocData';
+import { UserMenu } from './component/UserMenu';
 
 const Header = () => {
   return (
@@ -17,8 +15,8 @@ const Header = () => {
           </h1>
         </div>
       </NextLinkHelper>
-      <LoginModalButton />
-      {/*<UserMenu user={user} />*/}
+
+      <UserMenu />
     </div>
   );
 };

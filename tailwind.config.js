@@ -8,5 +8,12 @@ module.exports = {
   theme: {
     extend: {}
   },
-  plugins: [require('tailwind-scrollbar-hide')]
+  plugins: [
+    require('tailwind-scrollbar-hide'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-nested-groups')
+  ]
 };

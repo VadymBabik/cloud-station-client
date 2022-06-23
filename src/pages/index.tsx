@@ -6,11 +6,11 @@ import { Layout } from '../components/Layout';
 const Home: NextPage = () => {
   return (
     <Layout>
-      <div className="flex justify-center items-center min-h-full">
+      <div className="flex justify-center items-center">
         <Image
           src={'/images/hero-image.png'}
-          width="800"
-          height="800"
+          width="500"
+          height="500"
           objectFit="fill"
           alt={'hero-image'}
         />
