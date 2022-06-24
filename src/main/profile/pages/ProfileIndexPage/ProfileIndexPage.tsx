@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../../../components/Helpers/AuthProvider/AuthProvider';
+import ProfileAvatar from '../components/ProfileAvatar/ProfileAvatar';
 
 const ProfileIndexPage = () => {
   const { currentUser } = useAuth();
@@ -8,13 +9,7 @@ const ProfileIndexPage = () => {
   }
   return (
     <div className="flex gap-4">
-      <img
-        className="h-52 w-52 "
-        src={
-          currentUser?.imageUrl ?? 'http://e-bugle.com/uploads/empty_user.png'
-        }
-        alt={currentUser?.name}
-      />
+      <ProfileAvatar imageUrl={currentUser?.imageUrl} />
       <div className="flex flex-col">
         <div className="flex flex-col pb-4">
           <span className="text-lg text-cyan-900 font-semibold tracking-wide">
