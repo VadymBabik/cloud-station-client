@@ -1,9 +1,12 @@
 import React from 'react';
 import { useAuth } from '../../../../components/Helpers/AuthProvider/AuthProvider';
-import ProfileAvatar from '../components/ProfileAvatar/ProfileAvatar';
+import { ProfileAvatar } from '../components/ProfileAvatar';
+import EditingFieldProfile from '../components/EditingFieldProfile/EditingFieldProfile';
+import { ProfileEditFields } from '../../profileTypes';
 
 const ProfileIndexPage = () => {
   const { currentUser } = useAuth();
+
   if (!currentUser) {
     return null;
   }
@@ -11,18 +14,16 @@ const ProfileIndexPage = () => {
     <div className="flex gap-4">
       <ProfileAvatar imageUrl={currentUser?.imageUrl} />
       <div className="flex flex-col">
-        <div className="flex flex-col pb-4">
-          <span className="text-lg text-cyan-900 font-semibold tracking-wide">
-            Name
-          </span>
-          <span>{currentUser?.name}</span>
-        </div>
-        <div className="flex flex-col pb-4">
-          <span className="text-lg text-cyan-900 font-semibold tracking-wide">
-            Email
-          </span>
-          <span>{currentUser?.email}</span>
-        </div>
+        <EditingFieldProfile
+          value={currentUser?.name}
+          label={'Name'}
+          fields={ProfileEditFields.NAME}
+        />
+        <EditingFieldProfile
+          value={currentUser?.email}
+          label={'Email'}
+          fields={ProfileEditFields.EMAIL}
+        />
       </div>
     </div>
   );
